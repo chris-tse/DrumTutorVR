@@ -1,4 +1,4 @@
-# This file uses meters as units for non-parametric coordinates.
+# This file uses centimeters as units for non-parametric coordinates.
 
 mtllib Drum_stool.mtl
 v 0.998999 1.985252 -0.000268
@@ -292,7 +292,7 @@ vt 0.211335 0.046333
 vt 0.197812 0.388712
 vt 0.155332 0.392631
 s 1
-g drumStool1
+g drumStool
 usemtl lambert6SG
 f 75/13 74/97 76/99
 f 77/100 75/13 76/99
