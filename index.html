@@ -14,7 +14,7 @@
       <!-- IMG textures -->
       <img id="drumStoolTx" src="Assets/Drumstool_diffuse.jpg">
       <img id="drumStickTx" src="Assets/Light_seamless_wood_with_text.jpg">
-      <img id="cymbalTx" src="Assets/Cymbal_diffuse.jpg">
+      <img id="cymbalTx" src="Assets/Cymbal_Diffuse.jpg">
       <img id="drumTx" src="Assets/Transparent_blue.png">
       <img id="speakerTx" src="Assets/Speaker_UVW_Diffuse.jpg">
 
@@ -32,7 +32,7 @@
     <a-entity obj-model="obj: #drumStoolObj" material="src: #drumStoolTx" position="0 0.4 0.9"></a-entity>
     <a-entity obj-model="obj: #drumStickObj" id="drumStickRight" material="src: #drumStickTx" position="1 2 0"></a-entity>
     <a-entity obj-model="obj: #drumStickObj" id="drumStickLeft" material="src: #drumStickTx" position="-1 2 0"></a-entity>
-    
+
     <!-- Speakers -->
     <!-- Front -->
     <a-entity obj-model="obj: #speakerObj" id="speakersLeft" material="src: #speakerTx" position="-7 0 -7" rotation="0 45 0"></a-entity>
@@ -53,27 +53,25 @@
 
     <!-- Drums -->
     <!-- Snare -->
-    <a-entity obj-model="obj: #drumObj" id="Snare" material="color: #6262E3; opacity: 0.5" position="-2.4 2.5 -0.5"></a-entity>
+    <a-entity obj-model="obj: #drumObj" class="makeBlue" id="Snare" position="-2.4 2.5 -0.5"></a-entity>
     <!-- Small Tom -->
-    <a-entity obj-model="obj: #drumObj" id="SmallTom" material="color: #6262E3; opacity: 0.5" position="-1 3.7 -1.7" rotation="26 30 0"
-      scale="0.8 0.8 0.8"></a-entity>
+    <a-entity obj-model="obj: #drumObj" class="makeBlue" id="SmallTom" position="-1 3.7 -1.7" rotation="26 30 0" scale="0.8 0.8 0.8"></a-entity>
     <!-- Medium Tom -->
-    <a-entity obj-model="obj: #drumObj" id="MedTom" material="color: #6262E3; opacity: 0.5" position="1.6 3.6 -1.8" rotation="17.3 -27 0"
-      scale="1.1 1.1 1.1"></a-entity>
+    <a-entity obj-model="obj: #drumObj" class="makeBlue" id="MedTom" position="1.6 3.6 -1.8" rotation="17.3 -27 0" scale="1.1 1.1 1.1"></a-entity>
     <!-- Floor Tom -->
-    <a-entity obj-model="obj: #drumObj" id="FloorTom" material="color: #6262E3; opacity: 0.5" position="2.9 2.3 -0.7" rotation="15 -50 0"
-      scale="1.3 1.3 1.3"></a-entity> <!-- Bass Drum -->
-    <a-entity obj-model="obj: #drumObj" id="BassDrum" material="color: #6262E3; opacity: 0.5" position="0 1.9 -3.6" rotation="0 90 90"
-      scale="2 2 2">
-      <a-animation attribute="material.color" dur="10000" fill="forwards" from="blue" to="orange" repeat="indefinite" </a-animation>
+    <a-entity obj-model="obj: #drumObj" class="makeBlue" id="FloorTom" position="2.9 2.3 -0.7" rotation="15 -50 0" scale="1.3 1.3 1.3"></a-entity>
+    <!-- Bass Drum -->
+    <a-entity obj-model="obj: #drumObj" class="makeBlue" id="BassDrum" position="0 1.9 -3.6" rotation="0 90 90" scale="2 2 2">
+      <!-- <a-animation attribute="material.color" dur="10000" fill="forwards" from="blue" to="orange" repeat="indefinite" </a-animation> -->
     </a-entity>
 
 
     <a-entity hand-controls="left" id="leftHand" grab></a-entity>
     <a-entity hand-controls="right" if="rightHand" grab></a-entity>
     <a-plane position="0 0 -4" rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
+    <a-sky color="#ECECEC"></a-sky>
   </a-scene>
+  <script src="scripts/init.js"></script>
 </body>
 
 </html>
