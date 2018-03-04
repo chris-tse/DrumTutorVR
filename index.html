@@ -17,6 +17,7 @@
       <img id="cymbalTx" src="Assets/Cymbal_diffuse.jpg">
       <img id="drumTx" src="Assets/Transparent_blue.png">
       <img id="speakerTx" src="Assets/Speaker_UVW_Diffuse.jpg">
+      <img id="skyTx" src="Assets/sky.jpg">
 
       <!-- Shaders -->
 
@@ -26,20 +27,22 @@
       <a-asset-item id="cymbalObj" src="Assets/Cymbal.obj"></a-asset-item>
       <a-asset-item id="drumObj" src="Assets/Drum.obj"></a-asset-item>
       <a-asset-item id="speakerObj" src="Assets/Speakers.obj"></a-asset-item>
+      <a-asset-item id="stage" src="Assets/Stage.obj"></a-asset-item>
     </a-assets>
 
     <!-- Scene Objects -->
+    <a-entity obj-model="obj: #stage" position="0 -3 -5"></a-entity>
     <a-entity obj-model="obj: #drumStoolObj" material="src: #drumStoolTx" position="0 0.4 0.9"></a-entity>
     <a-entity obj-model="obj: #drumStickObj" id="drumStickRight" material="src: #drumStickTx" position="1 2 0"></a-entity>
     <a-entity obj-model="obj: #drumStickObj" id="drumStickLeft" material="src: #drumStickTx" position="-1 2 0"></a-entity>
     
     <!-- Speakers -->
     <!-- Front -->
-    <a-entity obj-model="obj: #speakerObj" id="speakersLeft" material="src: #speakerTx" position="-7 0 -7" rotation="0 45 0"></a-entity>
-    <a-entity obj-model="obj: #speakerObj" id="speakersRight" material="src: #speakerTx" position="7 0 -7" rotation="0 -45 0"></a-entity>
+    <a-entity obj-model="obj: #speakerObj" id="speakersLeft" material="src: #speakerTx" position="-7 0 -7" rotation="0 -135 0"></a-entity>
+    <a-entity obj-model="obj: #speakerObj" id="speakersRight" material="src: #speakerTx" position="7 0 -7" rotation="0 135 0"></a-entity>
     <!-- Sides -->
-    <a-entity obj-model="obj: #speakerObj" id="speakersMidLeft" material="src: #speakerTx" position="-9 0 0" rotation="0 90 0"></a-entity>
-    <a-entity obj-model="obj: #speakerObj" id="speakersMidRight" material="src: #speakerTx" position="9 0 0" rotation="0 -90 0"></a-entity>
+    <a-entity obj-model="obj: #speakerObj" id="speakersMidLeft" material="src: #speakerTx" position="-10 0 0" rotation="0 180 0"></a-entity>
+    <a-entity obj-model="obj: #speakerObj" id="speakersMidRight" material="src: #speakerTx" position="10 0 0" rotation="0 180 0"></a-entity>
 
 
     <!-- Cymbals -->
@@ -71,8 +74,8 @@
 
     <a-entity hand-controls="left" id="leftHand" grab></a-entity>
     <a-entity hand-controls="right" if="rightHand" grab></a-entity>
-    <a-plane position="0 0 -4" rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
+    <a-plane position="0 -8 -10" rotation="-90 0 0" width="100" height="100" color="#7BC8A4"></a-plane>
+      <a-sky src="#skyTx"></a-sky>
   </a-scene>
 </body>
 
