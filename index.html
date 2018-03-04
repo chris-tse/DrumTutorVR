@@ -25,25 +25,35 @@
       </a-assets>
       
       <!-- Scene Objects -->
-      <a-entity obj-model="obj: #drumStoolObj" material="src: #drumStoolTx"></a-entity>
+      <a-entity obj-model="obj: #drumStoolObj" material="src: #drumStoolTx" position="0 0.4 0.9"></a-entity>
       <a-entity obj-model="obj: #drumStickObj" material="src: #drumStickTx" position="1,0,0"></a-entity>
-      <a-entity obj-model="obj: #cymbalObj" material="src: #cymbalTx" position="-4.5 2.5 -3.5"
+      
+
+      <!-- Cymbals -->
+      <!-- Crash Cymbal -->
+      <a-entity obj-model="obj: #cymbalObj" material="src: #cymbalTx" position="-3.5 4.5 -2.7"
       rotation="25 25 0"></a-entity>
+      <!-- Hi Hat -->
+      <a-entity obj-model="obj: #cymbalObj" material="src: #cymbalTx" position="-4 3.5 0.2"
+      rotation="6.4 0 -8" scale="0.6 0.6 0.6"></a-entity>
+      <!-- Ride Cymbal -->
+      <a-entity obj-model="obj: #cymbalObj" material="src: #cymbalTx" position="4.8 4.5 -1.3"
+      rotation="25 -40 0" scale="1.2 1.2 1.2"></a-entity>
 
       <!-- Drums -->
-
       <!-- Snare -->
-      <a-entity obj-model="obj: #drumObj" material="color: #6262E3; opacity: 0.5" position="-2.2 2 -2"></a-entity>
+      <a-entity obj-model="obj: #drumObj" material="color: #6262E3; opacity: 0.5" position="-2.4 2.5 -0.5"></a-entity>
       <!-- Small Tom -->
-      <a-entity obj-model="obj: #drumObj" material="color: #6262E3; opacity: 0.5" position="0 0 0"
-      scale="1.2 1.2 1.2"></a-entity>
+      <a-entity obj-model="obj: #drumObj" material="color: #6262E3; opacity: 0.5" position="-1 3.7 -1.7"
+      rotation="26 30 0" scale="0.8 0.8 0.8"></a-entity>
       <!-- Medium Tom -->
-      <a-entity obj-model="obj: #drumObj" material="color: #6262E3; opacity: 0.5" position="0 0 1"></a-entity>
+      <a-entity obj-model="obj: #drumObj" material="color: #6262E3; opacity: 0.5" position="1.6 3.6 -1.8"
+      rotation="17.3 -27 0" scale="1.1 1.1 1.1"></a-entity>
       <!-- Floor Tom -->
-      <a-entity obj-model="obj: #drumObj" material="color: #6262E3; opacity: 0.5" position="3 1 -1.5"
-      rotation="0 0 0" scale="1.3 1.3 1.3"></a-entity
+      <a-entity obj-model="obj: #drumObj" material="color: #6262E3; opacity: 0.5" position="2.9 2.3 -0.7"
+      rotation="15 -50 0" scale="1.3 1.3 1.3"></a-entity
       <!-- Base Drum -->
-      <a-entity obj-model="obj: #drumObj" material="color: #6262E3; opacity: 0.5" position="0 0 -3"
+      <a-entity obj-model="obj: #drumObj" material="color: #6262E3; opacity: 0.5" position="0 1.9 -3.6"
       rotation="0 90 90" scale="2 2 2"></a-entity>
       
 
