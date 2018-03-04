@@ -6,11 +6,12 @@
   <title>Hello, World! - A-Frame</title>
   <meta name="description" content="Hello, World! - A-Frame">
   <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
-  <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.0.1/dist/aframe-physics-system.min.js"></script>
+  <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.13.1/dist/aframe-extras.min.js"></script>
+  <script src="scripts/components/stick-controls.js"></script>
 </head>
 
 <body>
-  <a-scene>
+  <a-scene physics='gravity: -1' antialias='true'>
     <a-assets>
       <!-- IMG textures -->
       <img id="drumStoolTx" src="Assets/Drumstool_diffuse.jpg">
@@ -20,7 +21,15 @@
       <img id="speakerTx" src="Assets/Speaker_UVW_Diffuse.jpg">
       <img id="skyTx" src="Assets/sky.jpg">
 
-      <!-- Shaders -->
+      <!-- Audio -->
+      <audio id="snareSound" src="Assets/Sounds/snare.wav" preload="auto"></audio>
+      <audio id="smallTomSound" src="Assets/Sounds/small_tom.wav" preload="auto"></audio>
+      <audio id="medTomSound" src="Assets/Sounds/medium_tom.wav" preload="auto"></audio>
+      <audio id="groundTomSound" src="Assets/Sounds/ground_tom.wav" preload="auto"></audio>
+      <audio id="bassKickSound" src="Assets/Sounds/bass_kick.wav" preload="auto"></audio>
+      <audio id="hiHatSound" src="Assets/Sounds/hi_hat.wav" preload="auto"></audio>
+      <audio id="crashCymbalSound" src="Assets/Sounds/crash_cymbal.wav" preload="auto"></audio>
+      <audio id="rideCymbalSound" src="Assets/Sounds/ride_cymbal.wav" preload="auto"></audio>
 
       <!-- Objects -->
       <a-asset-item id="drumStoolObj" src="Assets/Drum_stool.obj"></a-asset-item>
@@ -31,11 +40,18 @@
       <a-asset-item id="stage" src="Assets/Stage.obj"></a-asset-item>
     </a-assets>
 
+    <a-entity camera look-controls wasd-controls id="camera"></a-entity>
+    <a-entity id="leftController" static-body="shape: sphere; sphereRadius: 0.05;" vive-controls="hand: left" sphere-collider="objects: .throwable"
+            grab></a-entity>
+    <a-entity id="rightController" static-body="shape: sphere; sphereRadius: 0.05;" vive-controls="hand: right" sphere-collider="objects: .throwable"
+            grab></a-entity>
+
     <!-- Scene Objects -->
-    <a-entity obj-model="obj: #stage" position="0 -3 -5"></a-entity>
-    <a-entity obj-model="obj: #drumStoolObj" material="src: #drumStoolTx" position="0 0.4 0.9"></a-entity>
-    <a-entity obj-model="obj: #drumStickObj" id="drumStickRight" material="src: #drumStickTx" position="1 2 0"></a-entity>
-    <a-entity obj-model="obj: #drumStickObj" id="drumStickLeft" material="src: #drumStickTx" position="-1 2 0"></a-entity>
+    
+    <a-entity obj-model="obj: #drumStoolObj" material="src: #drumStoolTx" position="0 0.4 0.9"
+    scale="0.5 0.5 0.5></a-entity>
+    <a-entity class="throwable stick" dynamic-body obj-model="obj: #drumStickObj" id="drumStickRight" material="src: #drumStickTx" position="1 4 0" scale="0.12 0.12 0.12"></a-entity>
+    <a-entity class="throwable stick" dynamic-body obj-model="obj: #drumStickObj" id="drumStickLeft" material="src: #drumStickTx" position="-1 4 0" scale="0.12 0.12 0.12"></a-entity>
 
     <!-- Speakers -->
     <!-- Front -->
@@ -48,37 +64,43 @@
 
     <!-- Cymbals -->
     <!-- Crash Cymbal -->
-    <a-entity obj-model="obj: #cymbalObj" id="crashCymbal" material="src: #cymbalTx" position="-3.5 4.5 -2.7" rotation="25 25 0"></a-entity>
+    <a-entity obj-model="obj: #cymbalObj" class="drumPiece" id="crashCymbal" material="src: #cymbalTx" position="-3.5 4.5 -2.7" rotation="25 25 0" sound="src: #crashCymbalSound"></a-entity>
     <!-- Hi Hat -->
-    <a-entity obj-model="obj: #cymbalObj" id="hiHat" material="src: #cymbalTx" position="-4 3.5 0.2" rotation="6.4 0 -8" scale="0.6 0.6 0.6"></a-entity>
+    <a-entity obj-model="obj: #cymbalObj" class="drumPiece" id="hiHat" material="src: #cymbalTx" position="-4 3.5 0.2" rotation="6.4 0 -8" scale="0.6 0.6 0.6" sound="src: #hiHatSound"></a-entity>
     <!-- Ride Cymbal -->
-    <a-entity obj-model="obj: #cymbalObj" id="rideCymbal" material="src: #cymbalTx" position="4.8 4.5 -1.3" rotation="25 -40 0"
-      scale="1.2 1.2 1.2"></a-entity>
+    <a-entity obj-model="obj: #cymbalObj" class="drumPiece" id="rideCymbal" material="src: #cymbalTx" position="4.8 4.5 -1.3" rotation="25 -40 0"
+      scale="1.2 1.2 1.2" sound="src: #rideCymbalSound"></a-entity>
 
     <!-- Drums -->
     <!-- Snare -->
-    <a-entity obj-model="obj: #drumObj" class="makeBlue" id="Snare" position="-2.4 2.5 -0.5"></a-entity>
+    <a-entity obj-model="obj: #drumObj" class="makeBlue drumPiece" id="Snare" position="-2.4 2.5 -0.5" sound="src: #snareSound"></a-entity>
     <!-- Small Tom -->
-    <a-entity obj-model="obj: #drumObj" class="makeBlue" id="SmallTom" position="-1 3.7 -1.7" rotation="26 30 0" scale="0.8 0.8 0.8"></a-entity>
+    <a-entity obj-model="obj: #drumObj" class="makeBlue drumPiece" id="SmallTom" position="-1 3.7 -1.7" rotation="26 30 0" scale="0.8 0.8 0.8" sound="src: #smallTomSound"
+    ></a-entity>
     <!-- Medium Tom -->
-    <a-entity obj-model="obj: #drumObj" class="makeBlue" id="MedTom" position="1.6 3.6 -1.8" rotation="17.3 -27 0" scale="1.1 1.1 1.1"></a-entity>
+    <a-entity obj-model="obj: #drumObj" class="makeBlue drumPiece" id="MedTom" position="1.6 3.6 -1.8" rotation="17.3 -27 0" scale="1.1 1.1 1.1" sound="src: #medTomSound"
+    ></a-entity>
     <!-- Floor Tom -->
-    <a-entity obj-model="obj: #drumObj" class="makeBlue" id="FloorTom" position="2.9 2.3 -0.7" rotation="15 -50 0" scale="1.3 1.3 1.3"></a-entity>
+    <a-entity obj-model="obj: #drumObj" class="makeBlue drumPiece" id="FloorTom" position="2.9 2.3 -0.7" rotation="15 -50 0" scale="1.3 1.3 1.3" sound="src: #groundTomSound"></a-entity>
     <!-- Bass Drum -->
-    <a-entity obj-model="obj: #drumObj" class="makeBlue" id="BassDrum" position="0 1.9 -3.6" rotation="0 90 90" scale="2 2 2">
+    <a-entity obj-model="obj: #drumObj" class="makeBlue drumPiece" id="BassDrum" position="0 1.9 -3.6" rotation="0 90 90" scale="2 2 2"
+    sound="src: #bassKickSound">
       <!-- <a-animation attribute="material.color" dur="10000" fill="forwards" from="blue" to="orange" repeat="indefinite" </a-animation> -->
     </a-entity>
 
+    
+    <!-- stage -->
+    <a-entity id="stage" static-body obj-model="obj: #stage" position="0 -1 -5" scale="1 0.5 1"></a-entity>
+    
+    <!-- ground -->
+    <a-plane static-body position="0 -8 -10" rotation="-90 0 0" width="1000" height="1000" color="#7BC8A4"></a-plane>
 
-    <a-entity hand-controls="left" id="leftHand" grab></a-entity>
-    <a-entity hand-controls="right" if="rightHand" grab></a-entity>
-
-    <a-plane position="0 -8 -10" rotation="-90 0 0" width="100" height="100" color="#7BC8A4"></a-plane>
+    <!-- sky -->
     <a-sky src="#skyTx"></a-sky>
 
   </a-scene>
   <script src="scripts/init.js"></script>
-  <script src="scripts/collide.js"></script>
+  <!-- <script src="scripts/collide.js"></script> -->
 </body>
 
 </html>
